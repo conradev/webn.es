@@ -129,10 +129,12 @@ $(function() {
 
   var input = nes.input;
   var buttons = [ '#portrait_A', '#portrait_B', '#portrait_select','#portrait_start', '#portrait_up', '#portrait_down', '#portrait_left', '#portrait_right' ];
+  var startEvent = (document.ontouchstart !== null) ? 'mousedown' : 'touchstart';
+  var stopEvent = (document.ontouchend !== null) ? 'mouseup' : 'touchend';
   buttons.forEach(function(selector) {
-    $(selector).mousedown(function() {
+    $(selector).bind(startEvent, function() {
       input.setButton(buttons.indexOf(selector), true);
-    }).mouseup(function() {
+    }).bind(stopEvent, function() {
       input.setButton(buttons.indexOf(selector), false);
     });
   });
