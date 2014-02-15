@@ -16,7 +16,6 @@ var WebNES = function(nes) {
 
   // Unlock audio
   var self = this;
-
   window.addEventListener('touchstart', function() {
     var source = self.audio.createBufferSource();
     source.buffer = self.audio.createBuffer(1, 1, 22050);
@@ -24,12 +23,19 @@ var WebNES = function(nes) {
     source.start(0);    
   });
 
-  this.screen.addEventListener('click', onCanvasTouchStart, false);
+  var intervalId = 0;
+  this.screen.addEventListener('touchstart', function() {
+    intervalId = setInterval(function() {
+      $('#home').slideDown(250);
+      $('#portrait_controls').fadeOut(250);
+      $('#play').slideUp(250);
+      clearInterval(interval);
+    }, 1000); }, false);
+  this.screen.addEventListener('touchend', function() {
+    clearInterval(intervalId);
+  }, false);
 };
 
-function onCanvasTouchStart() {
-  alert("working motherfucker")
-}
 WebNES.prototype = {
   updateStatus: function(status) {
     console.log('JSNES: ' + status);
@@ -92,8 +98,9 @@ $(function() {
     }).bind(stopEvent, function() {
       clearTimeout(timeoutId);
       if (alerted) return;
-      $('#home').hide();
-      $('#play').show();
+      $('#home').slideUp(250);
+      $('#play').slideDown(250);
+      $('#portrait_controls').slideDown(250);
       var rom = localStorage.getItem(record.storage);
       nes.loadRom(rom);
       nes.start();
