@@ -31,6 +31,7 @@ var WebNES = function(nes) {
       $('#home').slideDown(250);
       $('#portrait_controls').fadeOut(250);
       $('#play').slideUp(250);
+      nes.stop();
       clearInterval(intervalId);
     }, 1000); }, false);
   this.screen.addEventListener(stopEvent, function() {
@@ -115,8 +116,12 @@ $(function() {
       $('#home').slideUp(250);
       $('#play').slideDown(250);
       $('#portrait_controls').slideDown(250);
-      var rom = localStorage.getItem(record.storage);
-      nes.loadRom(rom);
+    
+      if (nes.loadedId !== record.id) {
+        var rom = localStorage.getItem(record.storage);
+        nes.loadRom(rom);
+        nes.loadedId = record.id;
+      }
       nes.start();
     });
 
