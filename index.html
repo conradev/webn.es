@@ -5,15 +5,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>webnes</title>
         <meta name="description" content="An NES emulator for everyone">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <h1>webnes</h1>
-        <p>An NES emulator for everyone</p>
-
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="ylxh9tjqm2q301i"></script>
+        <script src="js/jsnes.min.js"></script>
         <script src="js/webnes.js"></script>
 
         <script>
@@ -24,5 +25,8 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-43172430-2');ga('send','pageview');
         </script>
+
+        <canvas id="screen" width="256" height="240"></canvas>
+        <canvas id="controls" width="320" height="100"></canvas>
     </body>
 </html>
