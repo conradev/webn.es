@@ -7,6 +7,7 @@ body {
 }
 
 #play {
+  text-align: center;
   height: 100%;
   display: none;
   position: relative;
@@ -20,8 +21,10 @@ canvas#screen {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  margin: 0 auto;
   min-height: 300px;
-  max-height: 600px;
+  max-height: 400px;
+  max-width: 800px;
 }
 
 div#portrait_controls {

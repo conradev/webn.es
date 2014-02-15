@@ -129,36 +129,38 @@ $(function() {
   });
 
   //button functionality
+  var x = new JSNES.Input();
+
   $("#portrait_up").click(function(e) {
-    alert("UP")
+    x.keyDown(38)
   });
 
   $("#portrait_right").click(function(e) {
-    alert("RIGHT")
+    x.keyDown(39)
   });
 
   $("#portrait_down").click(function(e) {
-    alert("DOWN")
+    x.keyDown(40)
   });
 
   $("#portrait_left").click(function(e) {
-    alert("LEFT")
+    x.keyDown(37)
   });
 
   $("#portrait_select").click(function(e) {
-    alert("select")
+    x.keyDown(17)
   });
 
   $("#portrait_start").click(function(e) {
-    alert("start")
+    x.setButton(13, true)
   });
 
   $("#portrait_B").click(function(e) {
-    alert("B")
+    x.keyDown(88)
   });
 
   $("#portrait_A").click(function(e) {
-    alert("A")
+    x.keyDown(89)
   });
 });
 
