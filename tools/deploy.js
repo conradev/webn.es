@@ -1,10 +1,11 @@
 var fs = require('fs');
 var path = require('path');
 
+var items = [ 'index.html', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', '//www.dropbox.com/static/api/1/dropins.js' ]
+var js = fs.readdirSync('js').map(function(filename) { return path.join('js', filename); });
 var css = fs.readdirSync('css').map(function(filename) { return path.join('css', filename); });
 var images = fs.readdirSync('images').map(function(filename) { return path.join('images', filename); });
-var js = fs.readdirSync('js').map(function(filename) { return path.join('js', filename); });
-var items = [ 'index.html' ].concat(js).concat(css).concat(images);
+items = items.concat(js).concat(css).concat(images);
 
 var unwanted = fs.readFileSync('.gitignore').toString().split('\n');
 var unwanted = unwanted.filter(function(item) {
