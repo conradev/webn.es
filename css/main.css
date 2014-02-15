@@ -21,7 +21,8 @@ body {
 
 #play img {
     position: fixed;
-    pointer-events:none;
+    -webkit-touch-callout:none;
+    touch-callout:none;
 }
 
 canvas#screen {
