@@ -7,7 +7,6 @@ var Webnes = function(nes) {
   this.canvasContext = this.screen.getContext('2d');
   this.canvasContext.fillStyle = 'black';
   this.canvasContext.fillRect(0, 0, 256, 240);
-
   // Initialize framebuffer
   this.canvasData = this.canvasContext.getImageData(0, 0, 256, 240);
   for (var i = 3; i < this.canvasData.data.length - 3; i += 4) {
