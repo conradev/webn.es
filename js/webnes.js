@@ -59,25 +59,29 @@ $(function() {
 
   function renderItem(record) {
     var item = $('<li/>').text(record.name).attr('id', record.id);
-    var alertCreated = new Boolean();
-    item.mousedown(function(e) {
-      alertCreated = false;
-      item.pressTimer = window.setTimeout(function() {
-        var confirmed = confirm("Delete this ROM?");
-        alertCreated = true;
-        if (confirmed) {
-          alert('Deleted');
-        }
-      }, 1000)
-    }).mouseup(function(e){
-      if(alertCreated == false){
-        $('#home').hide();
-        $('#play').show();
-        var rom = localStorage.getItem(record.storage);
-        nes.loadRom(rom);
-        nes.start();
-      }
-      clearTimeout(item.pressTimer);
+    var alerted = false;
+    var timeoutId = 0;
+    item.mousedown(function() {
+      alerted = false;
+      console.log('HI!');
+      timeoutId = window.setTimeout(function() {
+        alerted = true;
+        if (!confirm("Delete this ROM?")) return;
+        db.transaction(function(tx){
+          tx.executeSql('DELETE FROM roms WHERE id = ?', [record.id], function() {
+            localStorage.removeItem(record.storage);
+            $('li#' + record.id).remove();
+          });
+        });
+      }, 1000);
+    }).mouseup(function() {
+      clearTimeout(timeoutId);
+      if (alerted) return;
+      $('#home').hide();
+      $('#play').show();
+      var rom = localStorage.getItem(record.storage);
+      nes.loadRom(rom);
+      nes.start();
     });
 
     return item;

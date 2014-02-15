@@ -18,7 +18,6 @@ html, body {
 }
 
 canvas#screen {
-
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -88,6 +87,7 @@ div#home {
     height: 44px;
     line-height: 44px;
     border-bottom: 1px solid #ceaaaa;
+    -webkit-user-select: none;
 }
 
 #footer{
