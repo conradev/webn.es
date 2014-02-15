@@ -75,20 +75,21 @@ $(function() {
     var item = $('<li/>').text(record.name).attr('id', record.id);
     var alerted = false;
     var timeoutId = 0;
-    item.mousedown(function() {
+    var startEvent = (document.ontouchstart !== null) ? 'mousedown' : 'touchstart';
+    var stopEvent = (document.ontouchend !== null) ? 'mouseup' : 'touchend';
+    item.bind(startEvent, function() {
       alerted = false;
-      console.log('HI!');
       timeoutId = window.setTimeout(function() {
         alerted = true;
         if (!confirm("Delete this ROM?")) return;
         db.transaction(function(tx){
           tx.executeSql('DELETE FROM roms WHERE id = ?', [record.id], function() {
             localStorage.removeItem(record.storage);
-            $('li#' + record.id).remove();
+            item.remove();
           });
         });
       }, 1000);
-    }).mouseup(function() {
+    }).bind(stopEvent, function() {
       clearTimeout(timeoutId);
       if (alerted) return;
       $('#home').hide();
@@ -136,32 +137,15 @@ $(function() {
     });
   });
 
-  //button functionality
-  var x = new JSNES.Input();
-
-  $("#portrait_up").click(function(e) {
-    x.keyDown(38)
-  });
-
-  $("#portrait_right").click(function(e) {
-    x.keyDown(39)
-  });
-
-  $("#portrait_down").click(function(e) {
-    x.keyDown(40)
-  });
-
-  $("#portrait_left").click(function(e) {
-    x.keyDown(37)
-  });
-
-  $("#portrait_select").click(function(e) {
-    x.keyDown(17)
-  });
-
-  $("#portrait_start").click(function(e) {
-    x.setButton(13, true)
+  var input = nes.input;
+  var buttons = [ '#portrait_A', '#portrait_B', '#portrait_select','#portrait_start', '#portrait_up', '#portrait_down', '#portrait_left', '#portrait_right' ];
+  var startEvent = (document.ontouchstart !== null) ? 'mousedown' : 'touchstart';
+  var stopEvent = (document.ontouchend !== null) ? 'mouseup' : 'touchend';
+  buttons.forEach(function(selector) {
+    $(selector).bind(startEvent, function() {
+      input.setButton(buttons.indexOf(selector), true);
+    }).bind(stopEvent, function() {
+      input.setButton(buttons.indexOf(selector), false);
+    });
   });
 });
-
-  
