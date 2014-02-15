@@ -74,9 +74,6 @@ canvas#screen {
 }
 
 div#portrait_controls {
-  box-shadow:inset 30px 30px 20px #888;
-  -moz-box-shadow:inset 30px 30px 20px #888;
-  -webkit-box-shadow:inset 30px 30px 20px #888;
   background-color: #fff;
   width: 100%;
   min-height: -webkit-calc(100% - 300px);
@@ -206,4 +203,18 @@ img#portrait_A {
   top: 68%;
   left: 40%;
   height: 3%;
+}
+
+@media screen and (orientation:landscape) {
+  img {
+    opacity: .6;
+  }
+  img:active {
+    opacity: 1;
+  }
+  #webNESLogoControls {
+    top: 68%;
+    left: 43%;
+    height: 5%;
+  }
 }
