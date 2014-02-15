@@ -3,29 +3,20 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>webnes</title>
+        <title>WebNES</title>
         <meta name="description" content="An NES emulator for everyone">
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="apple-touch-icon" href="images/apple-touch-icon-120.png">
         <link rel="stylesheet" href="css/main.css">
+        <script>var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-43172430-2"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script>
     </head>
     <body>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="//www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="ylxh9tjqm2q301i"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="ljq79l7av2b7o75"></script>
         <script src="js/jsnes.min.js"></script>
         <script src="js/webnes.js"></script>
-
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='http://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-43172430-2');ga('send','pageview');
-        </script>
-
         <div id="play">
             <canvas id="screen" width="256" height="240"></canvas>
             <div id="portrait_controls" width="320">
@@ -61,12 +52,11 @@
                     </div>
             </div>
         </div>
-        
         <div id="home">
             <div id="header">
-                <img src="images/logo.png" alt="webnes">
+                <img src="images/logo.png" alt="WebNES">
                 <div id="addROM">
-                    <img src="images/plus.png" alt="">
+                    <img src="images/plus.png">
                 </div>
             </div>
             <div id="scroll">
@@ -74,5 +64,4 @@
             </div>
         </div>
     </body>
-    <script src="js/menu.js"></script>
 </html>

@@ -1,4 +1,4 @@
-var Webnes = function(nes) {
+var WebNES = function(nes) {
   this.nes = nes;
   this.audio = new webkitAudioContext();
 
@@ -7,6 +7,7 @@ var Webnes = function(nes) {
   this.canvasContext = this.screen.getContext('2d');
   this.canvasContext.fillStyle = 'black';
   this.canvasContext.fillRect(0, 0, 256, 240);
+
   // Initialize framebuffer
   this.canvasData = this.canvasContext.getImageData(0, 0, 256, 240);
   for (var i = 3; i < this.canvasData.data.length - 3; i += 4) {
@@ -23,7 +24,7 @@ var Webnes = function(nes) {
   });
 };
 
-Webnes.prototype = {
+WebNES.prototype = {
   updateStatus: function(status) {
     console.log('JSNES: ' + status);
   },
@@ -51,3 +52,48 @@ Webnes.prototype = {
     source.start(0);
   }
 };
+
+$(function() {
+  var db = openDatabase('webnes', '1.0', 'Downloaded NES ROMs', 2 * 1024 * 1024);
+  var nes = new JSNES({ 'ui': WebNES, fpsInterval: 2000, emulateSound: true });
+
+  function renderItem(record) {
+    var item = $('<li/>').text(record.name).attr('id', record.id);
+    item.click(function(){
+      $('#home').hide();
+      $('#play').show();
+      var rom = localStorage.getItem(record.storage);
+      nes.loadRom(rom);
+      nes.start();
+    });
+    return item;
+  };
+
+  db.transaction(function(tx) {
+    tx.executeSql('CREATE TABLE IF NOT EXISTS roms (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, storage TEXT)');
+    tx.executeSql('SELECT * FROM roms', [], function(tx, result) {
+      for (var i = 0; i < result.rows.length; i++) {
+        $('#scroll ul').append(renderItem(result.rows.item(i)));
+      }
+    });
+  });
+
+  $('#addROM').click(function() {
+    $.ajax({
+      type: 'GET',
+      url: 'roms/donkey.nes',
+      timeout: 3000,
+      mimeType: 'text/plain; charset=x-user-defined',
+      success: function(data) {
+        var key = Math.random().toString(36).slice(2);
+        localStorage.setItem(key, data);
+        db.transaction(function(tx){
+          tx.executeSql('INSERT INTO roms (id, name, storage) VALUES (?, ?, ?)', [null, 'Donkey Kong', key]);
+          tx.executeSql('SELECT * FROM roms WHERE storage = ?', [key], function(tx, result) {
+            $('#scroll ul').append(renderItem(result.rows.item(0)));
+          });
+        });
+      }
+    });
+  });
+});
