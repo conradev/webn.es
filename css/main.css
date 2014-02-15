@@ -1,13 +1,14 @@
-body {
+html, body {
   width: 100%;
   height: 100%;
   margin: 0px;
 }
 
 #play {
-  display:none;
-  z-index:-1;
-  position:relative;
+  height: 100%;
+  display: block;
+  z-index: -1;
+  position: relative;
 }
 
 canvas#screen {
@@ -17,19 +18,20 @@ canvas#screen {
   width: 320px;
   height: 300px;
 }
-canvas#controls {
+
+div#controls {
+  background-color: #fff;
   width: 100%;
-  height: calc(100% - 300px);
+  min-height: -webkit-calc(100% - 300px);
 }
 
 div#home {
-  display:block;
+  display:none;
   z-index: 1000;
   position: absolute;
-  display: block;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   height: 100%;
-  background: #eeeeee;
+  background: #cccccc;
 }

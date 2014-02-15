@@ -23,11 +23,6 @@ var Webnes = function(nes) {
     source.start(0);    
   });
 
-  var a = document.getElementById('controls');
-  var b = a.getContext('2d');
-  b.fillStyle = 'green';
-  b.fillRect(0, 0, 320, 240);
-
   var xhr = new XMLHttpRequest();
 	xhr.overrideMimeType('text/plain; charset=x-user-defined');
 	xhr.open("GET", "roms/donkey.nes", true);
