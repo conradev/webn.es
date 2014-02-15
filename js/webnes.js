@@ -104,7 +104,7 @@ $(function() {
   $('#addROM').click(function() {
     Dropbox.choose({
       success: function(files) {
-        files.foreach(function(file) {
+        files.forEach(function(file) {
           addRom(file.name.replace('.nes', ''), file.link);
         });
       },
