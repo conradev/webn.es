@@ -19,7 +19,7 @@ for (i = 0; i < items.length; i++) {
 	}
 }
 
-contents = 'CACHE MANIFEST\nCACHE:\n' + filtered.join('\n') + '\n';
+contents = 'CACHE MANIFEST\nCACHE:\n' + filtered.join('\n') + '\nNETWORK:\n*\nhttp://*\nhttps://*\n';
 fs.writeFileSync('webnes.appcache', contents, encoding='utf8');
 
 var exec = require('child_process').exec;
