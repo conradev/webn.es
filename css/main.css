@@ -209,13 +209,14 @@ img#portrait_A {
 
   img#portrait_up {
     height: 15%;
-    width:;
+    top: 60%;
   }
 
   img#portrait_right {
     width: 15.5%;
     height: 15%;
     left: 28%;
+    top: 72%;
   }
 
 
@@ -227,6 +228,7 @@ img#portrait_A {
   img#portrait_left {
     width: 15.5%;
     height: 15%;
+    top: 72%;
     left: 4%;
   }
 
@@ -236,7 +238,6 @@ img#portrait_A {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-
   }
 
   img#portrait_select {
@@ -249,18 +250,21 @@ img#portrait_A {
   img#portrait_start {
     height:7%; 
     width:12%;
-    left: 78%;
+    left: 79%;
   }
 
   img#portrait_B {
     height:15%; 
-    width:15%;
-    left: 60%;
+    width:14%;
+    left: 61%;
+    top: 62%;
   }
 
   img#portrait_A {
     height:15%; 
-    width:15%;
+    width:14%;
+    top: 65%;
+    left: 78%;
   } 
 
   canvas#screen {
