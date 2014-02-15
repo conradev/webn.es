@@ -68,8 +68,7 @@ canvas#screen {
   margin-right: auto;
   width: 100%;
   margin: 0 auto;
-  min-height: 300px;
-  max-height: 50%;
+  max-height: 55%;
   max-width: 800px;
 }
 
@@ -80,7 +79,7 @@ div#portrait_controls {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-
+  overflow:hidden;
 }
 
 div#buttons {
@@ -156,61 +155,117 @@ img:active {
 }
 
 img#portrait_up {
-  top: 69%;
+  top: 64%;
   left: 16%;
 }
 
 img#portrait_right {
-  top: 81%;
+  top: 76%;
   left: 27%;
 }
 
 
 img#portrait_down {
-  top: 89.5%;
+  top: 84.5%;
   left: 16%;
 }
 
 
 img#portrait_left {
-  top: 81%;
+  top: 76%;
   left: 1%;
 }
 
 
 img#portrait_select {
-  top: 95%;
+  top: 90%;
   left: 53%;
 }
 
 
 img#portrait_start {
-  top: 95%;
+  top: 90%;
   left: 77%;
 }
 
 img#portrait_B {
-  top: 74%;
+  top: 69%;
   left: 52.5%;
 }
 
 img#portrait_A {
-  top: 71%;    
+  top: 66%;    
   left: 77%;
 } 
-
-#webNESLogoControls {
-    top: 68%;
-    left: 50%;
-    height: 5%;
-    margin-left: 2.5%
-  }
 
 @media screen and (orientation:landscape) {
   img {
     opacity: .6;
   }
+
   img:active {
     opacity: 1;
   }
+
+  img#portrait_up {
+    height: 15%;
+    width:;
+  }
+
+  img#portrait_right {
+    width: 15.5%;
+    height: 15%;
+    left: 28%;
+  }
+
+
+  img#portrait_down {
+    height: 15%;
+  }
+
+
+  img#portrait_left {
+    width: 15.5%;
+    height: 15%;
+    left: 4%;
+  }
+
+  div#portrait_controls {
+    width: 0;
+    height: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+  }
+
+  img#portrait_select {
+    height:7%; 
+    width:12%;
+    left: 62%;
+  }
+
+
+  img#portrait_start {
+    height:7%; 
+    width:12%;
+    left: 78%;
+  }
+
+  img#portrait_B {
+    height:15%; 
+    width:15%;
+    left: 60%;
+  }
+
+  img#portrait_A {
+    height:15%; 
+    width:15%;
+  } 
+
+  canvas#screen {
+    min-height: 55%;
+    max-height: 100%;
+  }
+
 }
