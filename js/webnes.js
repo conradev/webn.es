@@ -67,7 +67,9 @@ $(function() {
     var item = $('<li/>').text(record.name).attr('id', record.id);
     var alerted = false;
     var timeoutId = 0;
-    item.mousedown(function() {
+    var startEvent = (document.ontouchstart !== null) ? 'mousedown' : 'touchstart';
+    var stopEvent = (document.ontouchend !== null) ? 'mouseup' : 'touchend';
+    item.bind(startEvent, function() {
       alerted = false;
       timeoutId = window.setTimeout(function() {
         alerted = true;
@@ -79,7 +81,7 @@ $(function() {
           });
         });
       }, 1000);
-    }).mouseup(function() {
+    }).bind(stopEvent, function() {
       clearTimeout(timeoutId);
       if (alerted) return;
       $('#home').hide();
