@@ -24,14 +24,16 @@ var WebNES = function(nes) {
   });
 
   var intervalId = 0;
-  this.screen.addEventListener('touchstart', function() {
+  var startEvent = (document.ontouchstart !== null) ? 'mousedown' : 'touchstart';
+  var stopEvent = (document.ontouchend !== null) ? 'mouseup' : 'touchend';
+  this.screen.addEventListener(startEvent, function() {
     intervalId = setInterval(function() {
       $('#home').slideDown(250);
       $('#portrait_controls').fadeOut(250);
       $('#play').slideUp(250);
       clearInterval(interval);
     }, 1000); }, false);
-  this.screen.addEventListener('touchend', function() {
+  this.screen.addEventListener(stopEvent, function() {
     clearInterval(intervalId);
   }, false);
 };
