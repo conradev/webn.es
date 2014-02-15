@@ -15,6 +15,7 @@ body {
 
 #play img {
     position: fixed;
+    pointer-events:none;
 }
 
 canvas#screen {
