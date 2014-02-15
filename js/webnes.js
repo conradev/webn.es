@@ -1,4 +1,4 @@
-var iNES = function(nes) {
+var Webnes = function(nes) {
   this.nes = nes;
   this.audio = new webkitAudioContext();
 
@@ -20,36 +20,25 @@ var iNES = function(nes) {
     var source = self.audio.createBufferSource();
     source.buffer = self.audio.createBuffer(1, 1, 22050);
     source.connect(self.audio.destination);
-    source.start(0);
-
-    self.nes.stop();
-    Dropbox.choose({
-        success: function(files) {
-          var xhr = new XMLHttpRequest();
-          xhr.overrideMimeType('text/plain; charset=x-user-defined');
-          xhr.open("GET", files[0].link, true);
-          xhr.onload = function (e) {
-            self.nes.loadRom(xhr.responseText);
-            self.nes.start();
-          };
-          xhr.send(null);
-        },
-        cancel: function() {
-
-        },
-        linkType: "direct",
-        multiselect: false,
-        extensions: ['.nes']
-    });
-  }, false);
+    source.start(0);    
+  });
 
   var a = document.getElementById('controls');
   var b = a.getContext('2d');
   b.fillStyle = 'green';
   b.fillRect(0, 0, 320, 240);
+
+  var xhr = new XMLHttpRequest();
+	xhr.overrideMimeType('text/plain; charset=x-user-defined');
+	xhr.open("GET", "roms/donkey.nes", true);
+	xhr.onload = function (e) {
+		self.nes.loadRom(xhr.responseText);
+		self.nes.start();
+	};
+	xhr.send(null);
 };
 
-iNES.prototype = {
+Webnes.prototype = {
   updateStatus: function(status) {
     console.log('JSNES: ' + status);
   },
@@ -78,11 +67,8 @@ iNES.prototype = {
   }
 };
 
-// Prevent scrolling
-function stopScrolling(touchEvent) { touchEvent.preventDefault(); }
-document.addEventListener('touchmove', stopScrolling, false);
-
 document.addEventListener('DOMContentLoaded', function() {
-  var nes = new JSNES({ 'ui': iNES, fpsInterval: 2000, emulateSound: true });
+  var nes = new JSNES({ 'ui': Webnes, fpsInterval: 2000, emulateSound: true });
   console.log("webnes initialized");
 });
+

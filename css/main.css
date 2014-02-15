@@ -1,6 +1,15 @@
 body {
+  width: 100%;
+  height: 100%;
   margin: 0px;
 }
+
+#play {
+  display:none;
+  z-index:-1;
+  position:relative;
+}
+
 canvas#screen {
   display: block;
   margin-left: auto;
@@ -11,4 +20,16 @@ canvas#screen {
 canvas#controls {
   width: 100%;
   height: calc(100% - 300px);
+}
+
+div#home {
+  display:block;
+  z-index: 1000;
+  position: absolute;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 100%;
+  background: #eeeeee;
 }
