@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 
-var items = [ 'index.html', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', '//www.dropbox.com/static/api/1/dropins.js' ]
+var items = [ 'index.html', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', 'https://www.dropbox.com/static/api/1/dropins.js' ]
 var js = fs.readdirSync('js').map(function(filename) { return path.join('js', filename); });
 var css = fs.readdirSync('css').map(function(filename) { return path.join('css', filename); });
 var images = fs.readdirSync('images').map(function(filename) { return path.join('images', filename); });
