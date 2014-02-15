@@ -127,40 +127,13 @@ $(function() {
     });
   });
 
-  //button functionality
-  var x = new JSNES.Input();
-
-  $("#portrait_up").click(function(e) {
-    x.keyDown(38)
-  });
-
-  $("#portrait_right").click(function(e) {
-    x.keyDown(39)
-  });
-
-  $("#portrait_down").click(function(e) {
-    x.keyDown(40)
-  });
-
-  $("#portrait_left").click(function(e) {
-    x.keyDown(37)
-  });
-
-  $("#portrait_select").click(function(e) {
-    x.keyDown(17)
-  });
-
-  $("#portrait_start").click(function(e) {
-    x.setButton(13, true)
-  });
-
-  $("#portrait_B").click(function(e) {
-    x.keyDown(88)
-  });
-
-  $("#portrait_A").click(function(e) {
-    x.keyDown(89)
+  var input = nes.input;
+  var buttons = [ '#portrait_A', '#portrait_B', '#portrait_select','#portrait_start', '#portrait_up', '#portrait_down', '#portrait_left', '#portrait_right' ];
+  buttons.forEach(function(selector) {
+    $(selector).mousedown(function() {
+      input.setButton(buttons.indexOf(selector), true);
+    }).mouseup(function() {
+      input.setButton(buttons.indexOf(selector), false);
+    });
   });
 });
-
-  
