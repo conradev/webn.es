@@ -200,10 +200,11 @@ img#portrait_A {
 } 
 
 #webNESLogoControls {
-  top: 68%;
-  left: 40%;
-  height: 3%;
-}
+    top: 68%;
+    left: 50%;
+    height: 5%;
+    margin-left: 2.5%
+  }
 
 @media screen and (orientation:landscape) {
   img {
@@ -211,10 +212,5 @@ img#portrait_A {
   }
   img:active {
     opacity: 1;
-  }
-  #webNESLogoControls {
-    top: 68%;
-    left: 43%;
-    height: 5%;
   }
 }
