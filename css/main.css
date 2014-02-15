@@ -16,12 +16,14 @@ html, body {
 #play img {
     position: fixed;
 }
+
 canvas#screen {
 
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   min-height: 300px;
+  max-height: 600px;
 }
 
 div#portrait_controls {
@@ -94,7 +96,7 @@ div#home {
 
 
 img#portrait_up {
-  top: 71%;
+  top: 70%;
   left: 19%;
 }
 
@@ -110,12 +112,12 @@ img#portrait_down {
 
 img#portrait_left {
   top: 81%;
-  left: 4%;
+  left: 4.5%;
 }
 
 img#portrait_select {
   top: 97%;
-  left: 52%;
+  left: 51%;
 }
 
 img#portrait_start {
