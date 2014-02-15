@@ -13,6 +13,9 @@ html, body {
   position: relative;
 }
 
+#play img {
+    position: fixed;
+}
 canvas#screen {
 
   margin-left: auto;
@@ -89,50 +92,43 @@ div#home {
     text-align: center;
 }
 
+
 img#portrait_up {
-  position: fixed; 
-  top: 320px;
-  left: 60px;
+  top: 71%;
+  left: 19%;
 }
 
 img#portrait_right {
-  position: fixed;
-  top: 365px;
-  left: 95px;
+  top: 81%;
+  left: 29.5%;
 }
 
 img#portrait_down {
-  position: fixed;
-  top: 395px;
-  left: 60px;
+  top: 88%;
+  left: 19%;
 }
 
 img#portrait_left {
-  position: fixed;
-  top: 365px;
-  left: 10px;
+  top: 81%;
+  left: 4%;
 }
 
 img#portrait_select {
-  position: fixed;
-  top: 430px;
-  left: 167px;
+  top: 97%;
+  left: 52%;
 }
 
 img#portrait_start {
-  position: fixed;
-  top: 430px;
-  left: 240px;
+  top: 97%;
+  left: 75%;
 }
 
 img#portrait_B {
-  position: fixed;
-  top: 350px;
-  left: 165px;
+  top: 78%;
+  left: 50%;
 }
 
 img#portrait_A {
-  position: fixed;
-  top: 310px;
-  left: 240px;
+  top: 72%;
+  left: 74.5%;
 }
