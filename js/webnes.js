@@ -109,11 +109,34 @@ $(function() {
     return item;
   };
 
+  function addRom(name, url) {
+    $.ajax({
+      type: 'GET',
+      url: url,
+      timeout: 3000,
+      mimeType: 'text/plain; charset=x-user-defined',
+      success: function(data) {
+        var key = Math.random().toString(36).slice(2);
+        localStorage.setItem(key, data);
+        db.transaction(function(tx){
+          tx.executeSql('INSERT INTO roms (id, name, storage) VALUES (?, ?, ?)', [null, name, key]);
+          tx.executeSql('SELECT * FROM roms WHERE storage = ?', [key], function(tx, result) {
+            $('#scroll ul').append(renderItem(result.rows.item(0)));
+          });
+        });
+      }
+    });
+  }
+
   db.transaction(function(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS roms (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, storage TEXT)');
     tx.executeSql('SELECT * FROM roms', [], function(tx, result) {
       for (var i = 0; i < result.rows.length; i++) {
         $('#scroll ul').append(renderItem(result.rows.item(i)));
+      }
+      if (result.rows.length == 0) {
+        addRom('Croom', 'roms/croom.nes');
+        addRom('Tetramino', 'roms/lj65.nes');
       }
     });
   });  
@@ -121,25 +144,12 @@ $(function() {
   $('#addROM').click(function() {
     Dropbox.choose({
       success: function(files) {
-        $.ajax({
-          type: 'GET',
-          url: files[0].link,
-          timeout: 3000,
-          mimeType: 'text/plain; charset=x-user-defined',
-          success: function(data) {
-            var key = Math.random().toString(36).slice(2);
-            localStorage.setItem(key, data);
-            db.transaction(function(tx){
-              tx.executeSql('INSERT INTO roms (id, name, storage) VALUES (?, ?, ?)', [null, files[0].name.replace('.nes', ''), key]);
-              tx.executeSql('SELECT * FROM roms WHERE storage = ?', [key], function(tx, result) {
-                $('#scroll ul').append(renderItem(result.rows.item(0)));
-              });
-            });
-          }
+        files.foreach(function(file) {
+          addRom(file.name.replace('.nes', ''), file.link);
         });
       },
       linkType: "direct",
-      multiselect: false,
+      multiselect: true,
       extensions: ['.nes']
     });
   });
