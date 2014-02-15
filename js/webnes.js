@@ -14,7 +14,7 @@ var Webnes = function(nes) {
       this.canvasData.data[i] = 0xFF;
   }
 
-  // Unlock audio and start
+  // Unlock audio
   var self = this;
   window.addEventListener('touchstart', function() {
     var source = self.audio.createBufferSource();
@@ -22,15 +22,6 @@ var Webnes = function(nes) {
     source.connect(self.audio.destination);
     source.start(0);    
   });
-
-  var xhr = new XMLHttpRequest();
-	xhr.overrideMimeType('text/plain; charset=x-user-defined');
-	xhr.open("GET", "roms/donkey.nes", true);
-	xhr.onload = function (e) {
-		self.nes.loadRom(xhr.responseText);
-		self.nes.start();
-	};
-	xhr.send(null);
 };
 
 Webnes.prototype = {

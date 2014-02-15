@@ -27,7 +27,6 @@ div#portrait_controls {
 }
 
 div#home {
-  display: block;
   z-index: 1000;
   position: absolute;
   margin-left: auto;
@@ -82,7 +81,7 @@ div#home {
     padding: 0px 0px 0px 8px;
     height: 44px;
     line-height: 44px;
-    border-bottom: 1px solid #c70005;
+    border-bottom: 1px solid #ceaaaa;
 }
 
 
