@@ -31,7 +31,7 @@ var WebNES = function(nes) {
       $('#home').slideDown(250);
       $('#portrait_controls').fadeOut(250);
       $('#play').slideUp(250);
-      clearInterval(interval);
+      clearInterval(intervalId);
     }, 1000); }, false);
   this.screen.addEventListener(stopEvent, function() {
     clearInterval(intervalId);
