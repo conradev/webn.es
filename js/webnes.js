@@ -69,14 +69,13 @@ $(function() {
     var timeoutId = 0;
     item.mousedown(function() {
       alerted = false;
-      console.log('HI!');
       timeoutId = window.setTimeout(function() {
         alerted = true;
         if (!confirm("Delete this ROM?")) return;
         db.transaction(function(tx){
           tx.executeSql('DELETE FROM roms WHERE id = ?', [record.id], function() {
             localStorage.removeItem(record.storage);
-            $('li#' + record.id).remove();
+            item.remove();
           });
         });
       }, 1000);
