@@ -5,8 +5,6 @@ $("#playButton").click(function(){
     $("#play").show("show");
     
     //Start NES
-    document.addEventListener('DOMContentLoaded', function() {
     var nes = new JSNES({ 'ui': Webnes, fpsInterval: 2000, emulateSound: true });
     console.log("webnes initialized");
-    });
 })

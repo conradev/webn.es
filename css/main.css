@@ -8,13 +8,12 @@ html, body {
 
 #play {
   height: 100%;
-  display: block;
+  display: none;
   z-index: -1;
   position: relative;
 }
 
 canvas#screen {
-  display: block;
   margin-left: auto;
   margin-right: auto;
   width: 320px;
@@ -28,7 +27,7 @@ div#portrait_controls {
 }
 
 div#home {
-  display: none;
+  display: block;
   z-index: 1000;
   position: absolute;
   margin-left: auto;
@@ -89,9 +88,7 @@ div#home {
 
 
 #footer{
-    text-align: center;   
-}
-  background: #cccccc;
+    text-align: center;
 }
 
 img#portrait_up {
