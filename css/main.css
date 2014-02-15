@@ -13,6 +13,7 @@ body {
   -webkit-box-sizing: border-box;
    -moz-box-sizing: border-box;
   box-sizing: border-box;
+  overflow:hidden;
 }
 
 #desktopLanding {
@@ -47,12 +48,18 @@ body {
   height: 100%;
   display: none;
   position: relative;
+  overflow:hidden;
 }
 
 #play img {
     position: fixed;
     -webkit-touch-callout:none;
     touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
 }
 
 canvas#screen {
@@ -73,6 +80,10 @@ div#portrait_controls {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+div#buttons {
+  height: inherit;
 }
 
 div#home {

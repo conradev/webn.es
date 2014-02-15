@@ -71,8 +71,16 @@ $(function() {
   h = window.screen.availHeight
   w = window.screen.availWidth
 
-  s = $("#screen").css("height", h * .5 + "px")
-  n = $("#portrait_controls").css("height", h * .5 + "px")
+  if (h >= 640) {
+    $("#portrait_up").css("top", "61%")
+    $("#portrait_right").css("top", "70%")
+    $("#portrait_down").css("top", "75%")
+    $("#portrait_left").css("top", "70%")
+    $("#portrait_select").css("top", "84%")
+    $("#portrait_start").css("top", "84%")
+    $("#portrait_B").css("top", "66%")
+    $("#portrait_A").css("top", "60%")
+  }
 
   if(!jQuery.browser.mobile){
     $('#home').hide();
