@@ -16,14 +16,20 @@ var WebNES = function(nes) {
 
   // Unlock audio
   var self = this;
+
   window.addEventListener('touchstart', function() {
     var source = self.audio.createBufferSource();
     source.buffer = self.audio.createBuffer(1, 1, 22050);
     source.connect(self.audio.destination);
     source.start(0);    
   });
+
+  this.screen.addEventListener('click', onCanvasTouchStart, false);
 };
 
+function onCanvasTouchStart() {
+  alert("working motherfucker")
+}
 WebNES.prototype = {
   updateStatus: function(status) {
     console.log('JSNES: ' + status);
@@ -87,48 +93,73 @@ $(function() {
     return item;
   };
 
-  function addRom(name, url) {
-    $.ajax({
-      type: 'GET',
-      url: url,
-      timeout: 3000,
-      mimeType: 'text/plain; charset=x-user-defined',
-      success: function(data) {
-        var key = Math.random().toString(36).slice(2);
-        localStorage.setItem(key, data);
-        db.transaction(function(tx){
-          tx.executeSql('INSERT INTO roms (id, name, storage) VALUES (?, ?, ?)', [null, name, key]);
-          tx.executeSql('SELECT * FROM roms WHERE storage = ?', [key], function(tx, result) {
-            $('#scroll ul').append(renderItem(result.rows.item(0)));
-          });
-        });
-      }
-    });
-  }
-
   db.transaction(function(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS roms (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, storage TEXT)');
     tx.executeSql('SELECT * FROM roms', [], function(tx, result) {
       for (var i = 0; i < result.rows.length; i++) {
         $('#scroll ul').append(renderItem(result.rows.item(i)));
       }
-      if (result.rows.length == 0) {
-        addRom('Croom', 'roms/croom.nes');
-        addRom('Tetramino', 'roms/lj65.nes');
-      }
     });
-  });
+  });  
 
   $('#addROM').click(function() {
     Dropbox.choose({
       success: function(files) {
-        files.forEach(function(file) {
-          addRom(file.name.replace('.nes', ''), file.link);
+        $.ajax({
+          type: 'GET',
+          url: files[0].link,
+          timeout: 3000,
+          mimeType: 'text/plain; charset=x-user-defined',
+          success: function(data) {
+            var key = Math.random().toString(36).slice(2);
+            localStorage.setItem(key, data);
+            db.transaction(function(tx){
+              tx.executeSql('INSERT INTO roms (id, name, storage) VALUES (?, ?, ?)', [null, files[0].name.replace('.nes', ''), key]);
+              tx.executeSql('SELECT * FROM roms WHERE storage = ?', [key], function(tx, result) {
+                $('#scroll ul').append(renderItem(result.rows.item(0)));
+              });
+            });
+          }
         });
       },
       linkType: "direct",
-      multiselect: true,
+      multiselect: false,
       extensions: ['.nes']
     });
   });
+
+  //button functionality
+  $("#portrait_up").click(function(e) {
+    alert("UP")
+  });
+
+  $("#portrait_right").click(function(e) {
+    alert("RIGHT")
+  });
+
+  $("#portrait_down").click(function(e) {
+    alert("DOWN")
+  });
+
+  $("#portrait_left").click(function(e) {
+    alert("LEFT")
+  });
+
+  $("#portrait_select").click(function(e) {
+    alert("select")
+  });
+
+  $("#portrait_start").click(function(e) {
+    alert("start")
+  });
+
+  $("#portrait_B").click(function(e) {
+    alert("B")
+  });
+
+  $("#portrait_A").click(function(e) {
+    alert("A")
+  });
 });
+
+  
