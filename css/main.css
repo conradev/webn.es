@@ -2,6 +2,8 @@ html, body {
   width: 100%;
   height: 100%;
   margin: 0px;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-size: 14pt;
 }
 
 #play {
@@ -33,5 +35,59 @@ div#home {
   margin-right: auto;
   width: 100%;
   height: 100%;
-  background: #cccccc;
+}
+
+#header{
+    width: inherit;
+    float: left;
+    border-bottom: 3px solid #c70005;
+    background-color: #ceaaaa;
+}
+
+#header img{
+    width: 130px;
+    margin-left: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#addROM{
+    float: right;
+    margin-top: 0px;
+    margin-right: 10px;
+}
+
+#addROM img{
+    height: 25px;
+    width: 25px;   
+}
+
+#scroll {
+    width: 100%;
+    height: 480px;
+    float: left;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+#scroll ul {
+  padding-left: 20px;
+  margin: 0px;
+}
+
+#scroll li {
+    display: block;
+    position: relative;
+    list-style-type: none;
+    text-align: left;
+    padding: 0px 0px 0px 8px;
+    height: 44px;
+    line-height: 44px;
+    border-bottom: 1px solid #c70005;
+}
+
+
+
+#footer{
+    text-align: center;   
 }

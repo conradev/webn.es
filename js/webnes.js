@@ -61,9 +61,3 @@ Webnes.prototype = {
     source.start(0);
   }
 };
-
-document.addEventListener('DOMContentLoaded', function() {
-  var nes = new JSNES({ 'ui': Webnes, fpsInterval: 2000, emulateSound: true });
-  console.log("webnes initialized");
-});
-
