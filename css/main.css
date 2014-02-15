@@ -209,7 +209,7 @@ img#portrait_A {
 
   img#portrait_up {
     height: 15%;
-    top: 60%;
+    top: 57%;
   }
 
   img#portrait_right {
@@ -268,7 +268,7 @@ img#portrait_A {
   } 
 
   canvas#screen {
-    min-height: 55%;
+    min-height: 50%;
     max-height: 100%;
   }
 

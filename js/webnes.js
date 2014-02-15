@@ -69,8 +69,6 @@ WebNES.prototype = {
 };
 
 $(function() {
-  document.body.addEventListener('touchstart', function(e){ e.preventDefault(); });
-
   h = window.screen.availHeight
   w = window.screen.availWidth
 
