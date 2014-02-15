@@ -16,7 +16,7 @@ var WebNES = function(nes) {
 
   // Unlock audio
   var self = this;
-  window.one('touchstart', function() {
+  $(document).one('touchstart', function() {
     var source = self.audio.createBufferSource();
     source.buffer = self.audio.createBuffer(1, 1, 22050);
     source.connect(self.audio.destination);
