@@ -21,14 +21,14 @@ canvas#screen {
   height: 300px;
 }
 
-div#controls {
+div#portrait_controls {
   background-color: #fff;
   width: 100%;
   min-height: -webkit-calc(100% - 300px);
 }
 
 div#home {
-  display:none;
+  display: none;
   z-index: 1000;
   position: absolute;
   margin-left: auto;
@@ -90,4 +90,30 @@ div#home {
 
 #footer{
     text-align: center;   
+}
+  background: #cccccc;
+}
+
+img#portrait_up {
+  position: fixed; 
+  top: 320px;
+  left: 60px;
+}
+
+img#portrait_right {
+  position: fixed;
+  top: 365px;
+  left: 100px;
+}
+
+img#portrait_down {
+  position: fixed;
+  top: 395px;
+  left: 60px;
+}
+
+img#portrait_left {
+  position: fixed;
+  top: 365px;
+  left: 10px;
 }
