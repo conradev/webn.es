@@ -71,10 +71,8 @@ $(function() {
   h = window.screen.availHeight
   w = window.screen.availWidth
 
-  if (h > 480) {
-    p = (h - 480) / h 
-    $("#portrait_controls").css("margin-bottom", p)
-  }
+  s = $("#screen").css("height", h * .5 + "px")
+  n = $("#portrait_controls").css("height", h * .5 + "px")
 
   var db = openDatabase('webnes', '1.0', 'Downloaded NES ROMs', 2 * 1024 * 1024);
   var nes = new JSNES({ 'ui': WebNES, fpsInterval: 2000, emulateSound: true });

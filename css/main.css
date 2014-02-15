@@ -10,6 +10,9 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 #play {
@@ -31,7 +34,7 @@ canvas#screen {
   width: 100%;
   margin: 0 auto;
   min-height: 300px;
-  max-height: 400px;
+  max-height: 50%;
   max-width: 800px;
 }
 
@@ -40,6 +43,9 @@ div#portrait_controls {
   background-color: #fff;
   width: 100%;
   min-height: -webkit-calc(100% - 300px);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 div#home {
@@ -106,41 +112,41 @@ div#home {
 
 
 img#portrait_up {
-  top: 70%;
+  top: 66%;
   left: 19%;
 }
 
 img#portrait_right {
-  top: 81%;
+  top: 75%;
   left: 29.5%;
 }
 
 img#portrait_down {
-  top: 88%;
+  top: 80%;
   left: 19%;
 }
 
 img#portrait_left {
-  top: 81%;
+  top: 75%;
   left: 4.5%;
 }
 
 img#portrait_select {
-  top: 97%;
+  top: 89%;
   left: 51%;
 }
 
 img#portrait_start {
-  top: 97%;
+  top: 89%;
   left: 75%;
 }
 
 img#portrait_B {
-  top: 78%;
+  top: 71%;
   left: 50%;
 }
 
 img#portrait_A {
-  top: 72%;
+  top: 65%;
   left: 74.5%;
 }
