@@ -15,6 +15,33 @@ body {
   box-sizing: border-box;
 }
 
+#desktopLanding {
+  text-align: center;
+  height: 100%;
+  display: none;
+  position: relative;
+}
+
+#desktopLanding #webNESLogo {
+  width: 300px;
+  margin-left: 10px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  text-align: center;
+  border-bottom: 1px solid #ceaaaa;
+}
+
+#desktopLanding #noDesktop {
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+#desktopLanding p {
+  color: #c70005;
+  margin: 0px;
+}
+
 #play {
   text-align: center;
   height: 100%;
