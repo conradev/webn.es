@@ -79,21 +79,28 @@ $(function() {
   });
 
   $('#addROM').click(function() {
-    $.ajax({
-      type: 'GET',
-      url: 'roms/donkey.nes',
-      timeout: 3000,
-      mimeType: 'text/plain; charset=x-user-defined',
-      success: function(data) {
-        var key = Math.random().toString(36).slice(2);
-        localStorage.setItem(key, data);
-        db.transaction(function(tx){
-          tx.executeSql('INSERT INTO roms (id, name, storage) VALUES (?, ?, ?)', [null, 'Donkey Kong', key]);
-          tx.executeSql('SELECT * FROM roms WHERE storage = ?', [key], function(tx, result) {
-            $('#scroll ul').append(renderItem(result.rows.item(0)));
-          });
+    Dropbox.choose({
+      success: function(files) {
+        $.ajax({
+          type: 'GET',
+          url: files[0].link,
+          timeout: 3000,
+          mimeType: 'text/plain; charset=x-user-defined',
+          success: function(data) {
+            var key = Math.random().toString(36).slice(2);
+            localStorage.setItem(key, data);
+            db.transaction(function(tx){
+              tx.executeSql('INSERT INTO roms (id, name, storage) VALUES (?, ?, ?)', [null, files[0].name, key]);
+              tx.executeSql('SELECT * FROM roms WHERE storage = ?', [key], function(tx, result) {
+                $('#scroll ul').append(renderItem(result.rows.item(0)));
+              });
+            });
+          }
         });
-      }
+      },
+      linkType: "direct",
+      multiselect: false,
+      extensions: ['.nes']
     });
   });
 });
