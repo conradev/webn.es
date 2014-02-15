@@ -60,6 +60,7 @@ body {
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
 canvas#screen {
@@ -82,6 +83,7 @@ div#portrait_controls {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+
 }
 
 div#buttons {
@@ -148,7 +150,7 @@ div#home {
     -webkit-user-select: none;
 }
 
-#footer{
+#footer {
     text-align: center;
 }
 
@@ -199,3 +201,9 @@ img#portrait_A {
   top: 71%;    
   left: 77%;
 } 
+
+#webNESLogoControls {
+  top: 68%;
+  left: 40%;
+  height: 3%;
+}
