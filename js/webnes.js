@@ -60,6 +60,14 @@ WebNES.prototype = {
 };
 
 $(function() {
+  h = window.screen.availHeight
+  w = window.screen.availWidth
+
+  if (h > 480) {
+    p = (h - 480) / h 
+    $("#portrait_controls").css("margin-bottom", p)
+  }
+
   var db = openDatabase('webnes', '1.0', 'Downloaded NES ROMs', 2 * 1024 * 1024);
   var nes = new JSNES({ 'ui': WebNES, fpsInterval: 2000, emulateSound: true });
 
@@ -153,14 +161,6 @@ $(function() {
 
   $("#portrait_start").click(function(e) {
     x.setButton(13, true)
-  });
-
-  $("#portrait_B").click(function(e) {
-    x.keyDown(88)
-  });
-
-  $("#portrait_A").click(function(e) {
-    x.keyDown(89)
   });
 });
 
