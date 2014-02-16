@@ -24,8 +24,8 @@ var WebNES = function(nes) {
   });
 
   var intervalId = 0;
-  var startEvent = (document.ontouchstart !== null) ? 'mousedown' : 'touchstart';
-  var stopEvent = (document.ontouchend !== null) ? 'mouseup' : 'touchend';
+  var startEvent = 'touchstart';
+  var stopEvent = 'touchend';
   this.screen.addEventListener(startEvent, function() {
     intervalId = setInterval(function() {
       $('#home').slideDown(250);
@@ -58,8 +58,8 @@ WebNES.prototype = {
     this.canvasContext.putImageData(this.canvasData, 0, 0);
   },
   writeAudio: function(leftSamples, rightSamples) {
-  	var buffer = this.audio.createBuffer(2, leftSamples.length, this.nes.papu.sampleRate);
-  	buffer.getChannelData(0).set(leftSamples);
+    var buffer = this.audio.createBuffer(2, leftSamples.length, this.nes.papu.sampleRate);
+    buffer.getChannelData(0).set(leftSamples);
     buffer.getChannelData(1).set(rightSamples);
     var source = this.audio.createBufferSource();
     source.buffer = buffer;
@@ -96,8 +96,8 @@ $(function() {
     var item = $('<li/>').text(record.name).attr('id', record.id);
     var alerted = false;
     var timeoutId = 0;
-    var startEvent = (document.ontouchstart !== null) ? 'mousedown' : 'touchstart';
-    var stopEvent = (document.ontouchend !== null) ? 'mouseup' : 'touchend';
+    var startEvent = 'touchstart';
+    var stopEvent = 'touchend';
     item.bind(startEvent, function() {
       alerted = false;
       timeoutId = window.setTimeout(function() {
@@ -124,7 +124,6 @@ $(function() {
       }
       nes.start();
     });
-
     return item;
   };
 
@@ -175,8 +174,8 @@ $(function() {
 
   var input = nes.input;
   var buttons = [ '#portrait_A', '#portrait_B', '#portrait_select','#portrait_start', '#portrait_up', '#portrait_down', '#portrait_left', '#portrait_right' ];
-  var startEvent = (document.ontouchstart !== null) ? 'mousedown' : 'touchstart';
-  var stopEvent = (document.ontouchend !== null) ? 'mouseup' : 'touchend';
+  var startEvent = 'touchstart';
+  var stopEvent = 'touchend';
   buttons.forEach(function(selector) {
     $(selector).bind(startEvent, function() {
       input.setButton(buttons.indexOf(selector), true);
