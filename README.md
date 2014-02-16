@@ -25,7 +25,7 @@ webNES menu screen
 
 Donkey Kong
 
-<img src="https://raw2.github.com/conradev/webn.es/master/images/s4.PNG" style="width: 200px;"/>
+<img src="https://raw2.github.com/conradev/webn.es/master/images/s4.PNG" width= "200px"/>
 
 Importing ROMs from DropBox
 
