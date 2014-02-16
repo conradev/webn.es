@@ -156,7 +156,8 @@ $(function() {
         addRom('Croom', 'roms/croom.nes');
         addRom('Tetramino', 'roms/lj65.nes');
         addRom('Galaxy Patrol', 'roms/galaxy.nes');
-        addRom('Figther F-8000', 'roms/fighter_f8000.nes');
+        addRom('Fighter F-8000', 'roms/fighter_f8000.nes');
+        addRom('BoxBoy', 'roms/BOXBOY.nes');
       }
     });
   });  
