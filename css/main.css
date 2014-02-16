@@ -69,7 +69,11 @@ canvas#screen {
   width: 100%;
   margin: 0 auto;
   max-height: 55%;
-  max-width: 800px;
+  max-width: 800px; 
+  -webkit-box-shadow: 0px 0px 8px 2px #111;
+       -moz-box-shadow: 0px 0px 8px 2px #111;
+            box-shadow: 0px 0px 8px 2px #111;
+
 }
 
 div#portrait_controls {
