@@ -42,9 +42,14 @@ a:hover {
   border-bottom: 1px solid #ceaaaa;
 }
 
+#desktopLanding #webNESLogo {
+  opacity: 0.8; 
+}
+
 #desktopLanding #noDesktop {
   margin-left: 10px;
   margin-top: 15px;
+  opacity: 0.8;
 }
 
 #desktopLanding p {
@@ -163,8 +168,8 @@ div#home {
     text-align: center;
 }
 
-img:active {
-  opacity: .8;
+#play img:active {
+  opacity: .6;
 }
 
 img#portrait_up {

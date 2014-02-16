@@ -70,30 +70,7 @@ WebNES.prototype = {
 
 $(function() {
   // Simply choose any element and apply the .disableSelection(); method to disable text selection.
-
-$(document).ready(function(){
-
-   $('.notSelectable').disableSelection();
-    
-});
-
-
-
-// This jQuery Plugin will disable text selection for Android and iOS devices.
-// Stackoverflow Answer: http://stackoverflow.com/a/2723677/1195891
-$.fn.extend({
-    disableSelection: function() {
-        this.each(function() {
-            this.onselectstart = function() {
-                return false;
-            };
-            this.unselectable = "on";
-            $(this).css('-moz-user-select', 'none');
-            $(this).css('-webkit-user-select', 'none');
-        });
-    }
-});
-
+  
   h = window.screen.availHeight
   w = window.screen.availWidth
 
@@ -121,11 +98,12 @@ $.fn.extend({
     var item = $('<li/>').text(record.name).attr('id', record.id);
     var alerted = false;
     var timeoutId = 0;
-    var startEvent = (document.ontouchstart !== null) ? 'mousedown' : 'touchstart';
-    var stopEvent = (document.ontouchend !== null) ? 'mouseup' : 'touchend';
-    item.bind(startEvent, function() {
+    var shouldStartNES = true;
+    
+    item.bind('touchstart', function() {
+      shouldStartNES = true;
       alerted = false;
-
+      
       timeoutId = window.setTimeout(function() {
         alerted = true;
         if (!confirm("Delete this ROM?")) return;
@@ -136,19 +114,25 @@ $.fn.extend({
           });
         });
       }, 1000);
-    }).bind(stopEvent, function() {
+    }).bind('touchend', function() {
+        if(shouldStartNES){
+          clearTimeout(timeoutId);
+          if (alerted) return;
+
+          $('#home').slideUp(250);
+          $('#play').slideDown(250);
+          $('#portrait_controls').slideDown(250);
+
+          if (nes.loadedId !== record.id) {
+            var rom = localStorage.getItem(record.storage);
+            nes.loadRom(rom);
+            nes.loadedId = record.id;
+          }
+          nes.start();  
+        }
+    }).bind('touchmove', function() {
+      shouldStartNES = false;
       clearTimeout(timeoutId);
-      if (alerted) return;
-      $('#home').slideUp(250);
-      $('#play').slideDown(250);
-      $('#portrait_controls').slideDown(250);
-    
-      if (nes.loadedId !== record.id) {
-        var rom = localStorage.getItem(record.storage);
-        nes.loadRom(rom);
-        nes.loadedId = record.id;
-      }
-      nes.start();
     });
     return item;
   };
