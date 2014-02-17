@@ -90,6 +90,11 @@ $(function() {
     $('#play').hide();
     $('#desktopLanding').fadeIn(500);
   }
+
+  $(document).bind('touchmove', function(e) {
+    e.preventDefault();
+  });
+
   
   var db = openDatabase('webnes', '1.0', 'Downloaded NES ROMs', 2 * 1024 * 1024);
   var nes = new JSNES({ 'ui': WebNES, fpsInterval: 2000, emulateSound: true });
