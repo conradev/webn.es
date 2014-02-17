@@ -24,13 +24,14 @@ var WebNES = function(nes) {
   });
 
   var intervalId = 0;
-  var startEvent = (document.ontouchstart !== null) ? 'mousedown' : 'touchstart';
-  var stopEvent = (document.ontouchend !== null) ? 'mouseup' : 'touchend';
+  var startEvent = 'touchstart';
+  var stopEvent = 'touchend';
   this.screen.addEventListener(startEvent, function() {
     intervalId = setInterval(function() {
       $('#home').slideDown(250);
       $('#portrait_controls').fadeOut(250);
       $('#play').slideUp(250);
+      $(document).unbind('touchmove');
       nes.stop();
       clearInterval(intervalId);
     }, 1000); }, false);
@@ -69,8 +70,6 @@ WebNES.prototype = {
 };
 
 $(function() {
-  // Simply choose any element and apply the .disableSelection(); method to disable text selection.
-  
   h = window.screen.availHeight
   w = window.screen.availWidth
 
@@ -90,7 +89,7 @@ $(function() {
     $('#play').hide();
     $('#desktopLanding').fadeIn(500);
   }
-
+  
   var db = openDatabase('webnes', '1.0', 'Downloaded NES ROMs', 2 * 1024 * 1024);
   var nes = new JSNES({ 'ui': WebNES, fpsInterval: 2000, emulateSound: true });
 
@@ -98,12 +97,10 @@ $(function() {
     var item = $('<li/>').text(record.name).attr('id', record.id);
     var alerted = false;
     var timeoutId = 0;
-    var shouldStartNES = true;
-    
-    item.bind('touchstart', function() {
-      shouldStartNES = true;
+    var startEvent = 'touchstart';
+    var stopEvent = 'touchend';
+    item.bind(startEvent, function() {
       alerted = false;
-      
       timeoutId = window.setTimeout(function() {
         alerted = true;
         if (!confirm("Delete this ROM?")) return;
@@ -114,25 +111,22 @@ $(function() {
           });
         });
       }, 1000);
-    }).bind('touchend', function() {
-        if(shouldStartNES){
-          clearTimeout(timeoutId);
-          if (alerted) return;
-
-          $('#home').slideUp(250);
-          $('#play').slideDown(250);
-          $('#portrait_controls').slideDown(250);
-
-          if (nes.loadedId !== record.id) {
-            var rom = localStorage.getItem(record.storage);
-            nes.loadRom(rom);
-            nes.loadedId = record.id;
-          }
-          nes.start();  
-        }
-    }).bind('touchmove', function() {
-      shouldStartNES = false;
+    }).bind(stopEvent, function() {
       clearTimeout(timeoutId);
+      if (alerted) return;
+      $('#home').slideUp(250);
+      $('#play').slideDown(250);
+      $('#portrait_controls').slideDown(250);
+    
+      if (nes.loadedId !== record.id) {
+        var rom = localStorage.getItem(record.storage);
+        nes.loadRom(rom);
+        nes.loadedId = record.id;
+      }
+      $(document).bind('touchmove', function(e) {
+        e.preventDefault();
+      });
+      nes.start();
     });
     return item;
   };
@@ -187,8 +181,8 @@ $(function() {
 
   var input = nes.input;
   var buttons = [ '#portrait_A', '#portrait_B', '#portrait_select','#portrait_start', '#portrait_up', '#portrait_down', '#portrait_left', '#portrait_right' ];
-  var startEvent = (document.ontouchstart !== null) ? 'mousedown' : 'touchstart';
-  var stopEvent = (document.ontouchend !== null) ? 'mouseup' : 'touchend';
+  var startEvent = 'touchstart';
+  var stopEvent = 'touchend';
   buttons.forEach(function(selector) {
     $(selector).bind(startEvent, function() {
       input.setButton(buttons.indexOf(selector), true);
